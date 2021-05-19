@@ -1,0 +1,8 @@
+Tue May 18 20:01:03 EDT 2021
+First Entry
+Started the simplest blog I could. My intentions are just to track my progress on my Radio project
+After much searching and desperation I finally found libccrtp compiled for armhf. I was so close searching for it with 'apt-cache search libccrtp-dev:arm'. The issue was 2 fold. 1) I added the wrong architecture to dpkg - arm instead of armhf and 2) I didnt run an 'apt update' after adding the arch (even though it wouldnt have mattered because of 1)).
+Anyway, the correct order of commands to get libccrtp for armhf is:
+$dpkg --add-architecture armhf
+$apt-get update
+$apt-get install libccrtp-dev:armhf
