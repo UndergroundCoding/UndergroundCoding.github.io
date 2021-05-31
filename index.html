@@ -56,6 +56,38 @@ libccrtp2v5/stable,now 2.0.9-2.3 amd64 [installed,auto-removable]
     </pre>
     <p>Whatever. At least I learned a lot along the way.</p>
     <h2 id="episode-3-visual-studio-failing-to-load-wsl-headers">Episode 3: Visual Studio failing to load WSL headers.</h2>
+    <p>Another day, another bump on the way. This bump, however, was more of a warning than an error and,
+while I was able to proceed without fixing it, the consequence was very annoying.</p>
+    <p>When I setup my Visual Studio cmake project, specified it will be cross-compiling using Windows
+Subsystem for Linux (WSL), and specified the include directories on CMakeLists.txt, Visual Studio
+seemed to accept everything fine and well (no errors or warnings), and I was able to compile my
+project without issues, however Visual Studio just couldn't seem to find the proper header symbols.
+Everything had a red squigly line under it.</p>
+    <p>After much research I finally began to understand what Visual Studio does to load the symbols, and
+why it was able to compile but not resolve any symbols locally.</p>
+    <p>When creating a cmake project, in the <code>CMakeSettings.json</code> file there is an optional entry:
+<code>remoteCopyAdditionalIncludeDirectories</code>. Visual Studio goes into the directories specified in this
+entry and copies all files to a local directory, and uses those files to resolve any necessary
+symbols. The files are stored to <code>%USERPROFILE%\AppData\Local\Microsoft\Linux\HeaderCache\1.0</code>.</p>
+    <p>When I navigated to that directory, there was a single directory <code>wsl_debian</code>, which is the system
+I am using for the compiling the project. Inside the directory, however, there were none of the
+expected header files. For some reason, Visual Studio simply refuses to copy the necessary files
+from the WSL system to this directory, so I tried a different approach: using Visual Studio's remote
+system option.</p>
+    <p>Visual Studio's remote system allows the user to develop on one machine and compile on another,
+remotely. It is essentially what it is doing with the WSL setup, but using SSH to communicate with
+the remote server. The logic is the same: copy the remote includes to a local directory so
+intellisense can do its intellisensing.</p>
+    <p>I installed the SSH daemon on my Linux (WSL) system and set up the remote system connection on
+Visual Studio. I then change the CMakeSettings to use the remote system instead of WSL and let
+Visual Studio and CMake do their thing.</p>
+    <p>I checked the header cache directory again and found that this time there were 2 folders: the WSL
+one that already existed and another one with random numbers. The random number one, at last, had
+the header files I needed. I copied the header files to the WSL directories and everything worked,
+finally.</p>
+    <p>So, the moral of the story here is: just copy the necessary headers into the local header cache
+directory. There is no need for the remote system setup, that's just how I managed to get to this
+conclusion.</p>
     <h2 id="episode-4-cross-compiling-ccrtp-a-tale-of-libccrtp-2-arm-edition">Episode 4: Cross compiling ccRTP? A tale of libccrtp 2: ARM edition.</h2>
     <h2 id="episode-5-can-we-please-talk-about-android-development">Episode 5: Can we please talk about Android development?</h2>
     <h2 id="episode-6-avoidance-or-how-the-blog-came-to-be">Episode 6: Avoidance; or; How the blog came to be.</h2>
