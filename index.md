@@ -9,12 +9,12 @@ where the pointlessness of this project strectches far beyond necessary.
 
 A little more text to improve aesthetic and the appearance of an elegant, content-rich page.
 
-This is another pointless paragraph, but at tgis point I have realized I dont know how to end the 
-page... Do I finish it like a letter, which a `Best regards, xoxo`, or do I add a typical Copyright
-statement, even though I don't even know what it means?
+This is another pointless paragraph, but at this point I have realized I dont know how to end the 
+page... Do I finish it like a letter, with a `Best regards, xoxo`, or do I add a typical Copyright
+statement, even though I have no idea what it means?
 
 Honestly, at this point I don't think paragraph 3 is needed anymore. This page now is no longer just
-a clever joke to redirect to my blog, but has become a _actually_ pointless, bloated mess, that I
+a clever joke to redirect to my blog, but has become an _actually_ pointless, bloated mess that I
 just can't seem to find out how to end.
 
 I guess I'll just end it here, then...
