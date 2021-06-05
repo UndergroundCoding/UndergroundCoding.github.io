@@ -1,5 +1,7 @@
-# The Underground Blog
-## Episode 1: I Start a blog
+# [Underground Coding](UndergroundCoding.github.io/)
+## The Underground Blog
+### Episode 1: I Start a blog
+#### May 29, 2021
 Today I started a blog. I'm not sure if it will be program specific, or dev specific, or specific at
 all. I don't even know if I will keep itreading, but I will at least write and commit this entry.
 
@@ -9,7 +11,8 @@ This blog is (will be) hosted on github, initially as a markdown file but later 
 Anyway I've been wanting to list my struggles; my learnings;-and-; my victories. It is important to
 anchor your path by remembering the beginnings.
 
-## Episode 2: A Tale of libccrtp.
+### Episode 2: A Tale of libccrtp.
+#### May 29, 2021
 The project started. I set out to work with what seems like the only library for RTP and RTSP 
 protocol. GNU's ccRTP library is exactly what I need, but in C++ instead of Java. However, it does
 have a benefit over any Java product: it will be much lighter, and portable. Since it is my 
@@ -46,7 +49,8 @@ libccrtp2v5/stable,now 2.0.9-2.3 amd64 [installed,auto-removable]
 
 Whatever. At least I learned a lot along the way.
 
-## Episode 3: Visual Studio failing to load WSL headers.
+### Episode 3: Visual Studio failing to load WSL headers.
+#### May 31, 2021
 Another day, another bump on the way. This bump, however, was more of a warning than an error and,
 while I was able to proceed without fixing it, the consequence was very annoying.
 
@@ -88,6 +92,82 @@ So, the moral of the story here is: just copy the necessary headers into the loc
 directory. There is no need for the remote system setup, that's just how I managed to get to this 
 conclusion.
 
-## Episode 4: Cross compiling ccRTP? A tale of libccrtp 2: ARM edition.
-## Episode 5: Can we please talk about Android development?
-## Episode 6: Avoidance; or; How the blog came to be.
+### Episode 4: Cross compiling ccRTP? A tale of libccrtp 2: ARM edition.
+#### June 5, 2021
+Armed with the beautiful libccrtp I write a simple client/server program to get familiar with both 
+the library and the protocol.
+I set up wireshark to monitor the transmission of data and after many mistakes I am finally able to 
+send a file from the client to the server. Great success! I am now ready to drop this into my 
+Android APK and finally get things going!
+
+Except I'm not...
+
+While getting familiarized with Android's native development kit (NDK) I learn that I overlooked a 
+pretty big flaw in my portability assessment: I need the c++ libraries built for each [target
+triplet](https://wiki.osdev.org/Target_Triplet).
+
+I find that my phone, an old piece of junk, runs on a 32bit ARM processor with hardfloat support. My
+brain defaults to "I need to compile libccrtp targetting ARMHF." And that's what I set out to do.
+
+After an obscene amount of time trying to cross compile libccrtp, realizing that for this build to 
+work I need all the dependancies also targetting ARMHF, trying to build libucommon from source, I 
+finally came across an important finding:
+
+<a href="https://packages.debian.org/buster/libccrtp-dev">
+<img src="./assets/libccrtp-dev_availableArchs.jpg" alt="libccrtp-dev_availableArchs" width="100%">
+</a>
+
+Almost like a glitch in the matrix, I am back at the exact same place I was many, many hours ago, 
+with only the small intellectual advance that I need to target ARM architecture. Still, progress is
+progress. Let's download this:
+```
+$ sudo apt install libccrtp-dev:armhf
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+E: Unable to locate package libccrtp-dev:armhf
+```
+
+WHAT? Ok, I need to add the architecture to `dpkg`s arch list. Fine, let's do it:
+```
+$dpkg --add-architechture armhf
+```
+
+Awesome, now let's get that library!
+```
+$ sudo apt install libccrtp-dev:armhf
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+E: Unable to locate package libccrtp-dev:armhf
+```
+
+Hmm. Still nothing? Well, let me save you the headaches and frustrations...
+
+After adding a new architecture to `dpkg` we need to update `apt`'s package list on and then apply 
+the updates. To do this we just need to call:
+```
+apt update && apt upgrade
+```
+
+Now apt should have pulled the list of armhf packages, so we try, again:
+```
+$ sudo apt install libccrtp-dev:armhf
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+The following packages were automatically installed and are no longer required:
+...
+```
+
+Yes! It worked! We can verify by checking the contents of the package:
+```
+$ dpkg -L libccrtp-dev:armhf | grep libccrtp.so
+/usr/lib/arm-linux-gnueabihf/libccrtp.so
+```
+
+Ok, finally! I am ready! Watchout Android, here I come!
+
+### Episode 5: Can we please talk about Android development?
+### Episode 6: Avoidance; or; How the blog came to be.
+### Episode 7: NDK, toolchains, and a lot of headaches. A tale of libccrtp 3: ARM*EL* edition.
