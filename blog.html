@@ -17,7 +17,7 @@ td, h1, h2, h3, h4, h5, p, ul, ol, li {
     <body>
         <h1 id="underground-coding"><a href="UndergroundCoding.github.io/">Underground Coding</a></h1>
 <h2 id="the-underground-blog">The Underground Blog</h2>
-<h3 id="episode-1-i-start-a-blog">Episode 1: I Start a blog</h3>
+<h3 id="episode-01-i-start-a-blog">Episode 01: I Start a blog</h3>
 <h4 id="may-29-2021">May 29, 2021</h4>
 <p>Today I started a blog. I'm not sure if it will be program specific, or dev specific, or specific at
 all. I don't even know if I will keep itreading, but I will at least write and commit this entry.</p>
@@ -25,7 +25,7 @@ all. I don't even know if I will keep itreading, but I will at least write and c
 (through github pages).</p>
 <p>Anyway I've been wanting to list my struggles; my learnings;-and-; my victories. It is important to
 anchor your path by remembering the beginnings.</p>
-<h3 id="episode-2-a-tale-of-libccrtp">Episode 2: A Tale of libccrtp.</h3>
+<h3 id="episode-02-a-tale-of-libccrtp">Episode 02: A Tale of libccrtp.</h3>
 <h4 id="may-29-2021-1">May 29, 2021</h4>
 <p>The project started. I set out to work with what seems like the only library for RTP and RTSP
 protocol. GNU's ccRTP library is exactly what I need, but in C++ instead of Java. However, it does
@@ -57,7 +57,7 @@ libccrtp2v5/stable,now 2.0.9-2.3 amd64 [installed,auto-removable]
   Common C++ class framework for RTP packets
 </code></pre>
 <p>Whatever. At least I learned a lot along the way.</p>
-<h3 id="episode-3-visual-studio-failing-to-load-wsl-headers">Episode 3: Visual Studio failing to load WSL headers.</h3>
+<h3 id="episode-03-visual-studio-failing-to-load-wsl-headers">Episode 03: Visual Studio failing to load WSL headers.</h3>
 <h4 id="may-31-2021">May 31, 2021</h4>
 <p>Another day, another bump on the way. This bump, however, was more of a warning than an error and,
 while I was able to proceed without fixing it, the consequence was very annoying.</p>
@@ -91,7 +91,7 @@ finally.</p>
 <p>So, the moral of the story here is: just copy the necessary headers into the local header cache
 directory. There is no need for the remote system setup, that's just how I managed to get to this
 conclusion.</p>
-<h3 id="episode-4-cross-compiling-ccrtp-a-tale-of-libccrtp-2-arm-edition">Episode 4: Cross compiling ccRTP? A tale of libccrtp 2: ARM edition.</h3>
+<h3 id="episode-04-cross-compiling-ccrtp-a-tale-of-libccrtp-2-arm-edition">Episode 04: Cross compiling ccRTP? A tale of libccrtp 2: ARM edition.</h3>
 <h4 id="june-5-2021">June 5, 2021</h4>
 <p>Armed with the beautiful libccrtp I write a simple client/server program to get familiar with both
 the library and the protocol.
@@ -147,9 +147,35 @@ The following packages were automatically installed and are no longer required:
 /usr/lib/arm-linux-gnueabihf/libccrtp.so
 </code></pre>
 <p>Ok, finally! I am ready! Watchout Android, here I come!</p>
-<h3 id="episode-5-can-we-please-talk-about-android-development">Episode 5: Can we please talk about Android development?</h3>
-<h3 id="episode-6-avoidance-or-how-the-blog-came-to-be">Episode 6: Avoidance; or; How the blog came to be.</h3>
-<h3 id="episode-7-ndk-toolchains-and-a-lot-of-headaches.a-tale-of-libccrtp-3-armel-edition">Episode 7: NDK, toolchains, and a lot of headaches. A tale of libccrtp 3: ARM<em>EL</em> edition.</h3>
+<h3 id="episode-05-ndk-toolchains-and-a-lot-of-headaches.a-tale-of-libccrtp-3-armel-edition">Episode 05: NDK, toolchains, and a lot of headaches. A tale of libccrtp 3: ARM<em>EL</em> edition.</h3>
+<h4 id="june-5th-2021">June 5th, 2021</h4>
+<p><em>A new day new day. A day for a new battlefield; for new conquests.&quot;</em></p>
+<p>I began that day with positive thoughts, for I positively thought that I had conquered the war of
+the compilation. Very early into this beautiful, hopeful day for, however, I realized that the
+battle I had won was just another one in this war that seemed never to end.</p>
+<p>The idea was simple, I thought. <em>&quot;Tomorrow I will compile libradio.dll for amrhf, drop into the
+Android project, and start the real work of developing!&quot;</em> I slept like a baby and looked forward
+for the new day.</p>
+<p>I compile my lib, spend a large amount of time finding out how to drop it into Androi project, drop
+it into Android, hit compile, and wait.</p>
+<p>...</p>
+<p>Doesn't work. The gradle starts to complain about my library. Cannot find sources, doesn't recognize
+functions, typical compiler BS.</p>
+<p>Everything points me towards using Android NDK (native development kit). Sigh... Ok, another step,
+another lesson, and another set of frustrations at the compiler battle field.</p>
+<p>I am back at cmake; reading, researching, learning about toolchains, ABIs, and other various things.
+I find that things are potentially easy (they were not), and that I might finally be at the edge of
+victory again (I was not).</p>
+<p>I try to compile and I am faced with an error similar to this:</p>
+<pre><code>error: xxx uses VFP register arguments, xxx does not
+</code></pre>
+<p>What? I reasearch more and, basically, Android NDK uses armeabi and does not support hard floating
+point. So what does this mean? It means I have the wrong libs. What I have, referred by <code>apt</code> as
+<code>armhf</code>, is <code>arm-linux-gnueabihf</code> and what I need is <code>arm-linux-gnueabi</code>, which <code>apt</code> refers to as
+<code>armel</code>.</p>
+<p>Basically the rest of the story here is Episode04 with every reference to <code>armhf</code> replace with
+<code>armel</code> and a lot less time researching.</p>
+<h3 id="episode-06-avoidance-or-how-the-blog-came-to-be">Episode 06: Avoidance; or; How the blog came to be.</h3>
 
     </body>
 </html>

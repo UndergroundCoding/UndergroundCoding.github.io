@@ -1,6 +1,6 @@
 # [Underground Coding](UndergroundCoding.github.io/)
 ## The Underground Blog
-### Episode 1: I Start a blog
+### Episode 01: I Start a blog
 #### May 29, 2021
 Today I started a blog. I'm not sure if it will be program specific, or dev specific, or specific at
 all. I don't even know if I will keep itreading, but I will at least write and commit this entry.
@@ -11,7 +11,7 @@ This blog is (will be) hosted on github, initially as a markdown file but later 
 Anyway I've been wanting to list my struggles; my learnings;-and-; my victories. It is important to
 anchor your path by remembering the beginnings.
 
-### Episode 2: A Tale of libccrtp.
+### Episode 02: A Tale of libccrtp.
 #### May 29, 2021
 The project started. I set out to work with what seems like the only library for RTP and RTSP 
 protocol. GNU's ccRTP library is exactly what I need, but in C++ instead of Java. However, it does
@@ -49,7 +49,7 @@ libccrtp2v5/stable,now 2.0.9-2.3 amd64 [installed,auto-removable]
 
 Whatever. At least I learned a lot along the way.
 
-### Episode 3: Visual Studio failing to load WSL headers.
+### Episode 03: Visual Studio failing to load WSL headers.
 #### May 31, 2021
 Another day, another bump on the way. This bump, however, was more of a warning than an error and,
 while I was able to proceed without fixing it, the consequence was very annoying.
@@ -92,7 +92,7 @@ So, the moral of the story here is: just copy the necessary headers into the loc
 directory. There is no need for the remote system setup, that's just how I managed to get to this 
 conclusion.
 
-### Episode 4: Cross compiling ccRTP? A tale of libccrtp 2: ARM edition.
+### Episode 04: Cross compiling ccRTP? A tale of libccrtp 2: ARM edition.
 #### June 5, 2021
 Armed with the beautiful libccrtp I write a simple client/server program to get familiar with both 
 the library and the protocol.
@@ -168,6 +168,46 @@ $ dpkg -L libccrtp-dev:armhf | grep libccrtp.so
 
 Ok, finally! I am ready! Watchout Android, here I come!
 
-### Episode 5: Can we please talk about Android development?
-### Episode 6: Avoidance; or; How the blog came to be.
-### Episode 7: NDK, toolchains, and a lot of headaches. A tale of libccrtp 3: ARM*EL* edition.
+### Episode 05: NDK, toolchains, and a lot of headaches. A tale of libccrtp 3: ARM*EL* edition.
+#### June 5th, 2021
+
+_A new day new day. A day for a new battlefield; for new conquests.\"_
+
+I began that day with positive thoughts, for I positively thought that I had conquered the war of 
+the compilation. Very early into this beautiful, hopeful day for, however, I realized that the 
+battle I had won was just another one in this war that seemed never to end.
+
+The idea was simple, I thought. _\"Tomorrow I will compile libradio.dll for amrhf, drop into the 
+Android project, and start the real work of developing!\"_ I slept like a baby and looked forward 
+for the new day.
+
+I compile my lib, spend a large amount of time finding out how to drop it into Androi project, drop 
+it into Android, hit compile, and wait.
+
+...
+
+Doesn't work. The gradle starts to complain about my library. Cannot find sources, doesn't recognize
+ functions, typical compiler BS.
+ 
+Everything points me towards using Android NDK (native development kit). Sigh... Ok, another step, 
+another lesson, and another set of frustrations at the compiler battle field.
+
+I am back at cmake; reading, researching, learning about toolchains, ABIs, and other various things.
+I find that things are potentially easy (they were not), and that I might finally be at the edge of 
+victory again (I was not).
+
+I try to compile and I am faced with an error similar to this:
+
+```
+error: xxx uses VFP register arguments, xxx does not
+```
+
+What? I reasearch more and, basically, Android NDK uses armeabi and does not support hard floating 
+point. So what does this mean? It means I have the wrong libs. What I have, referred by `apt` as 
+`armhf`, is `arm-linux-gnueabihf` and what I need is `arm-linux-gnueabi`, which `apt` refers to as 
+`armel`.
+
+Basically the rest of the story here is Episode04 with every reference to `armhf` replace with 
+`armel` and a lot less time researching.
+
+### Episode 06: Avoidance; or; How the blog came to be.
