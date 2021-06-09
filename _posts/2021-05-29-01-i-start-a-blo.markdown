@@ -1,0 +1,16 @@
+---
+layout: post
+ep:	01
+title:  "I Start a blog."
+date:   2021-05-29
+categories: radio
+---
+
+Today I started a blog. I'm not sure if it will be program specific, or dev specific, or specific at
+all. I don't even know if I will keep itreading, but I will at least write and commit this entry.
+
+This blog is (will be) hosted on github, initially as a markdown file but later as a website 
+(through github pages).
+
+Anyway I've been wanting to list my struggles; my learnings;-and-; my victories. It is important to
+anchor your path by remembering the beginnings.
