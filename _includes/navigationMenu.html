@@ -1,0 +1,6 @@
+<div class="NavigationMenu">
+	{% for menuItem in site.data.navigationList.items %}
+		{% assign items = site[menuItem.dir] %}
+		<div class="NavigationItem">{% include dropdownMenu.html title=menuItem.title items=items url=menuItem.url %}</div>
+	{% endfor %}
+</div>

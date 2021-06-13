@@ -1,0 +1,9 @@
+title: NavigationList
+items:
+
+- title: Blog
+  url: index.html
+  dir: posts
+
+- title: Projects
+  url: projects.html

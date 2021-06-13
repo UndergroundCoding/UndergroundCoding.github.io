@@ -1,0 +1,39 @@
+		<div class="DropdownMenu">
+			<button class="Title">Dropdown</button>
+			<div class="Items">
+				<button href="#">A</button>
+				<button href="#">A</button>
+				<button href="#">A</button>
+			</div>
+		</div>
+	  
+.DropdownMenu {
+	position: relative;
+	display: inline-block;
+}
+
+.Items {
+	position: absolute;
+	display: none;
+}
+
+.DropdownMenu:hover .Items {
+	display: block;
+}
+
+.DropdownMenu:hover .Items button {
+	display: block;
+}
+
+button {
+	width: 16ch;
+}
+
+.NavigationItem {
+	display: inline-block;
+}
+
+.NavigationMenu {
+	display: block;
+	margin: auto;
+}

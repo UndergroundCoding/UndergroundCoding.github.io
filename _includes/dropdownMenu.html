@@ -1,0 +1,12 @@
+<div class="DropdownMenu">
+	<a href="/{{include.url}}" >
+		<button class="Title">{{ include.title }}</button>
+	</a>
+	<div class="Items">
+	{% for item in include.items %}
+		<a href={{ item.url }}>
+			<button>{{ item.title }}</button>
+	</a>
+	{% endfor %}
+	</div>
+</div>

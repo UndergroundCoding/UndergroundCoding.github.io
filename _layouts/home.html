@@ -12,7 +12,7 @@ layout: default
   {%- if site.posts.size > 0 -%}
 	<h2 class="post-list-heading">{{ page.list_title | default: "Posts" }}</h2>
 	<ul class="post-list">
-{% assign sortedPosts = site.posts | sort: 'ep' %}
+	{% assign sortedPosts = site.posts | sort: 'ep' %}
       {%- for post in sortedPosts -%}
 		<li>
         {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
@@ -32,5 +32,4 @@ layout: default
 	<p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | relative_url }}">via RSS</a>
 	</p>
   {%- endif -%}
-
 </div>
