@@ -2,8 +2,13 @@ title: NavigationList
 items:
 
 - title: Blog
-  url: index.html
-  dir: posts
+  items:
 
-- title: Projects
-  url: projects.html
+- title: Projects TODO
+  items:
+  
+  - title: Radio
+    url: /todos/radio.html
+
+  - title: Blog
+    url: /todos/blog.html
