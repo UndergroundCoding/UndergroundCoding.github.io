@@ -1,5 +1,6 @@
 ---
 layout: post
+ep: 00
 title:  "Who ever said anything about RTP? What I actually meant was..."
 date:   2021-07-03
 categories: radio
