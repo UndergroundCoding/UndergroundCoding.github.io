@@ -1,0 +1,72 @@
+---
+layout: post
+ep:	08
+title:  "Decisions, indecisions, and redecisions."
+date:   2021-07-07
+categories: radio
+---
+
+I started out this project with a very simple and straight forward idea. As I started to work on 
+this idea I realized that it wasn't as simple as it had seemed in my mind. In fact, I learned there 
+was quite a significant gap between what I thought I know and what I _actually_ know.
+
+It  has been a very humbling experience.
+
+<!--end_preview-->
+
+During the process of developing this project I have been face with quite a few architectural 
+decisions that have left me walking in circles, bumping into barriers, staring into the void, 
+avoiding work, and reconsidering my intellectual and decision-making abilities.
+
+Here are some of the decisions, indecisions, and mistakes that I have faced:
+
+My first - and now also my latest - cause for indecision and circle-walking comes in the form of a 
+classic dev question: Portability and scalability or ease of devevelopment?
+
+I started this project intending to use my old Android device as the host for initiL testing. For 
+this reason, and because I wanted to learn more Java, I decided to use the default
+Android dev language; Java. While working on this project with Java I quickly realized that I don't
+like Java. But I also realized that Java will incur some type of overhead and possibly have 
+some portability issues.
+
+So I restarted, this time in C++. 
+
+I went all out too, setting up Visual Studio to compile using WSL (Linux running on Windows). That 
+was too much. I overcomplicated.
+
+I then went through various rookie mistakes and had to learn a lot. I finally got my first _thing_ 
+compiled. It didn't do much but it would serve as a starting point. Something to port to Android and
+start testing.
+
+When I tried to port _that_ to Android, however... Oh, boy... 
+
+It turns out that C++'s famous portability is _very_ difficult to achieve without significant blood 
+sweat and tears. Unlike the common Linux system, where package managers make C/C++ libraries easily
+accessible, Android requires a whole lot of compiling and later adapting to run with Java native. 
+And while I _believe_ - a _classic_ mistake - that I am able to cross-compile every library I
+will use - and all of their dependencies - targetting my Android device, it will be a very long and
+tedious process that I am dreading/avoiding.
+
+Another one of these intellect-judging architectural decisions I had to _re_decide was to move away 
+from RTP. While the original intent was to avoid having to compile ccRTP and all its dependencies, 
+the reason I eventually settled on was a better and more productive one.
+
+Implementation of TCP will be required independent of whether RTP is used so instead of starting 
+with RTP, which must deal with various drawbacks not present with TCP, I should start with TCP and
+ater on, if needed or still desired, I can implement RTP as an optimization/improvement. 
+A very elegant solution, to be honest since not only do I not need to cross-compile ccRTP, it also 
+makes genesis that much simpler.
+
+I have found, hoever, againt my most sincere beliefs, that C++ does not have a networking interface!
+(_Shock!, Awe!_) No. Indeed, I must now use Boost's Asio library to implement TCP communication. 
+This means that while I no longer have to compile ccRTP and _its_ dependencies, I do need to compile
+Boost Asio and _its_ dependencies. Leading me right back to where I consider using Java. Again.
+
+Even when I have a working C++ program compiled properly with all its dependencies targetting my 
+Android device, I still have the fun, fun task of adapting my program to Java through the 
+Java Native Interface (JNI). A program written directly in Java, however, would not need this.
+
+But then lets remember that Apple's iOS, while it potentially faces the same cross-compiling issues
+as Android it does _not_ need a JNI. It _does_ need a C interface, though.
+
+At this point I might just buy an iPhone...
