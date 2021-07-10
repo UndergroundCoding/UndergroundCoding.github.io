@@ -1,6 +1,6 @@
 ---
 layout: post
-ep: 09
+ep: 10
 title:  "Decisions, indecisions, and redecisions."
 date:   2021-07-09
 categories: radio
