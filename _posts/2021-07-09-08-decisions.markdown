@@ -1,6 +1,6 @@
 ---
 layout: post
-ep: 03
+ep: 08
 title:  "Visual Studio failing to load WSL headers."
 date:   2021-05-31
 categories: radio
