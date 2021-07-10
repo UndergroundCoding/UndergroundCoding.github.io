@@ -1,8 +1,8 @@
 ---
 layout: post
-ep: 08
-title:  "Visual Studio failing to load WSL headers."
-date:   2021-05-31
+ep: 03
+title:  "Decisions, indecisions, and redecisions."
+date:   2021-07-09
 categories: radio
 ---
 
