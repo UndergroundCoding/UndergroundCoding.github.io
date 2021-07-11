@@ -10,6 +10,6 @@ onHeader: false
 - [ ] Test Google Adsense
 - [ ] Merge navigation nenus (apply dropdown to the top one)
 - [ ] Fill the about me page
-- [ ] Implement a githook to fetch radio todo list automatically
 
 ## Done
+- [x] Implement a githook to fetch radio todo list automatically
